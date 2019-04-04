@@ -8,7 +8,6 @@ public class ComparadorPorNombre implements Comparator {
 		String s1 = (String) o1;
 		String s2 = (String) o2;
 		
-		return s1.get
-	}
+		return s1
 
 }

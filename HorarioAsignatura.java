@@ -27,13 +27,60 @@ public class HorarioAsignatura {
 
 	}
 
-	public void addHora(DiaSemana dia, Hora hora) {
+	/*
+	 * public boolean addHora(DiaSemana dia, Hora hora) { //tratando la excepcion
+	 * aqui
+	 * 
+	 * //if (existeClave(dia)) {
+	 * 
+	 * int numeroHoras; TreeSet t; t = (TreeSet) this.horarioAsignatura.get(dia);
+	 * 
+	 * numeroHoras = t.size();
+	 * 
+	 * try { if (numeroHoras == 3) { throw new DemasiadasHoras();
+	 * 
+	 * } } catch (DemasiadasHoras e) { return false; } t.add(hora); return true; //
+	 * }
+	 * 
+	 * }
+	 */
+
+	public void addHoraAsignatura(DiaSemana dia, Hora hora) throws DemasiadasHoras {
 
 		if (existeClave(dia)) {
-			
-			
+
+			int numeroHoras;
+			TreeSet t;
+			t = (TreeSet) this.horarioAsignatura.get(dia); // al hacer get de dia nos devulve el treeset de horas de ese
+															// dia
+
+			numeroHoras = t.size();
+
+			if (numeroHoras == 3) {
+				throw new DemasiadasHoras(dia, hora);
+
+			}
+
+			t.add(hora);
 
 		}
+
+	}
+
+	public int contarHoras(DiaSemana dia) {
+
+		TreeSet t;
+		t = (TreeSet) this.horarioAsignatura.get(dia);
+		int cont = 0;
+
+		Iterator it = t.iterator();
+		while (it.hasNext()) {
+
+			cont++;
+
+		}
+
+		return cont;
 
 	}
 
@@ -51,6 +98,11 @@ public class HorarioAsignatura {
 		}
 		return existe;
 
+	}
+
+	@Override
+	public String toString() {
+		return "Horario: " + horarioAsignatura + "]";
 	}
 
 }

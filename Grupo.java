@@ -7,21 +7,12 @@ public class Grupo {
 	private String nombre;
 	private SortedMap asignaturas;
 
-	/*
-	 * public Grupo(String nombre) {
-	 * 
-	 * this.asignaturas = new TreeMap(); this.nombre = nombre;
-	 * 
-	 * }
-	 */
+	public Grupo(String nombre) {
 
-	/*
-	 * public Grupo(String nombre, SortedMap asignaturas) {
-	 * 
-	 * this.asignaturas = asignaturas;; this.nombre = nombre;
-	 * 
-	 * }
-	 */
+		this.asignaturas = new TreeMap();
+		this.nombre = nombre;
+
+	}
 
 	public Grupo(String nombre, Comparator c) {
 
@@ -29,32 +20,26 @@ public class Grupo {
 		this.nombre = nombre;
 
 	}
-
-	public String getNombre() {
-		return nombre;
+	
+	public void addAsignatura (String nombreAsignatura) {
+		
+		this.asignaturas.put(nombreAsignatura, new HorarioAsignatura());
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+	public void addHora(String nombreAsignatura, DiaSemana dia, Hora hora) throws DemasiadasHoras {
 
-	public SortedMap getAsignaturas() {
-		return asignaturas;
-	}
+		HorarioAsignatura horario;
 
-	public void setAsignaturas(SortedMap asignaturas) {
-		this.asignaturas = asignaturas;
-	}
-
-	public void add(String nombreAsignatura, HorarioAsignatura horario) {
-
-		this.asignaturas.put(nombreAsignatura, horario);
+		horario = (HorarioAsignatura) this.asignaturas.get(nombreAsignatura); ///al hacer get de nombreAsignatura nos devulve el horario entero
+		horario.addHoraAsignatura(dia, hora);
 
 	}
 
-	public void addHora(String nombreAsignatura, HorarioAsignatura horario, DiaSemana dia) {
- 
-
+	@Override
+	public String toString() {
+		return "Grupo [nombre=" + nombre + ", asignaturas=" + asignaturas + "]";
 	}
+	
+	
 
 }

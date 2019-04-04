@@ -63,7 +63,7 @@ public class Hora implements Comparable {
 
 	@Override
 	public String toString() {
-		return "Hora [hora=" + hora + ", minuto=" + minuto + "]";
+		return "hora=" + hora + ", minuto=" + minuto;
 	}
 
 }
